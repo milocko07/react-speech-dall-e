@@ -24,72 +24,30 @@
 
 // export default App;
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import {SpeechText} from "./SpeechText"
+import "./App.css";
+import dataStream from './dataStream';
 
-const App = () => {
-  const [isRecording, setIsRecording] = useState(false);
-  const [transcript, setTranscript] = useState('');
-  const [showImage, setShowImage] = useState(false);
+function App() {
+  const [myState, setMyState] = useState('');
 
   useEffect(() => {
-    // Access the microphone
-    const accessMicrophone = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        const recognition = new window.webkitSpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
+    // Subscribe to the data stream
+    const subscription = dataStream.subscribe((value) => {
+      setMyState(value);
+    });
 
-        recognition.onstart = () => {
-          console.log('Recording started');
-        };
-
-        recognition.onresult = (event) => {
-          const { transcript } = event.results[event.results.length - 1][0];
-          setTranscript(transcript);
-        };
-
-        recognition.start();
-
-        return () => {
-          recognition.stop();
-          stream.getTracks().forEach((track) => track.stop());
-        };
-      } catch (error) {
-        console.error('Error accessing microphone:', error);
-      }
+    // Clean up the subscription when the component unmounts
+    return () => {
+      subscription.unsubscribe();
     };
-
-    if (isRecording) {
-      accessMicrophone();
-    }
-  }, [isRecording]);
-
-  const handleButtonClick = () => {
-    setShowImage(true);
-  };
+  }, []);
 
   return (
     <div>
-      <h1>Voice to Text</h1>
-      <button onClick={() => setIsRecording(!isRecording)}>
-        {isRecording ? 'Stop Recording' : 'Start Recording'}
-      </button>
-
-      {transcript && <p>Transcript: {transcript}</p>}
-
-      <button onClick={() => handleButtonClick()}>
-        {isRecording ? 'Send' : 'Start Recording'}
-      </button>
-
-      {showImage && (
-        <div>
-          <h2>Image Section</h2>
-          {/* <img src="path/to/your/image.jpg" alt="Image" /> */}
-        </div>
-      )}
-    </div>
-  );
-};
-
+    <SpeechText />
+    <p>Current text: {myState}</p>
+  </div>);
+}
 export default App;
