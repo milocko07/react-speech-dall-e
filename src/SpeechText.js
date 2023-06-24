@@ -20,6 +20,7 @@ export function SpeechText() {
     microphoneRef.current.classList.add("listening");
     SpeechRecognition.startListening({
       continuous: true,
+      language: 'es-CO'
     });
   };
   const stopHandle = () => {

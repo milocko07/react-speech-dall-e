@@ -24,30 +24,18 @@
 
 // export default App;
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {SpeechText} from "./SpeechText"
+import {ImageGenerator} from "./ImageGenerator"
 import "./App.css";
-import dataStream from './dataStream';
 
 function App() {
-  const [myState, setMyState] = useState('');
-
-  useEffect(() => {
-    // Subscribe to the data stream
-    const subscription = dataStream.subscribe((value) => {
-      setMyState(value);
-    });
-
-    // Clean up the subscription when the component unmounts
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
-
   return (
     <div>
-    <SpeechText />
-    <p>Current text: {myState}</p>
-  </div>);
+      <h2>Generate an Image using Open AI API</h2>
+      <SpeechText />
+      <ImageGenerator />
+    </div>
+  );
 }
 export default App;
