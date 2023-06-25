@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Configuration, OpenAIApi } from "openai";
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 import promptStream from './streams/promptStream';
 
 export function ImageGenerator() {
@@ -65,6 +67,7 @@ export function ImageGenerator() {
         value={promptState}
         onChange={(e) => changePromptInput(e)}
       />
+      
     </>
         // <div>
         //     <p>Describe la imágen:</p>
