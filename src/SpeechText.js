@@ -55,7 +55,11 @@ export function SpeechText() {
     <div>
       <Row>
         <Col xs={6} md={4}>
-          <Button variant="primary" disabled={isListeningState ? 'disabled' : ''} onClick={handleListening} >
+          <Button 
+            variant="primary" 
+            disabled={isListeningState ? 'disabled' : ''} 
+            onClick={handleListening} 
+          >
            {isListeningState ? 'Recording..' : 'Record'}
           </Button>
           {isListeningState && (

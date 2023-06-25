@@ -48,7 +48,7 @@ export function ImageGenerator() {
             const apiResponse = await openai.createImage({
                 prompt: promptState,
                 n: 1,
-                size: "512x512",
+                size: "1024x1024",
               });
 
             setResultState(apiResponse.data.data[0].url);
@@ -66,7 +66,8 @@ export function ImageGenerator() {
             <Col >
                 <Form.Label htmlFor="inputPassword5">Describe la imágen:</Form.Label>
                 <Form.Control 
-                    as="textarea" 
+                    as="textarea"
+                    disabled={loadingState ? 'disabled' : ''} 
                     rows={3} 
                     placeholder={promptState}
                     value={promptState}
@@ -76,17 +77,23 @@ export function ImageGenerator() {
         </Row>
         <Row>
             <Col xs={6} md={4}>
-                <Button variant="primary" onClick={generateDalleImage} >
+                <Button 
+                    variant="primary" 
+                    disabled={loadingState || promptState.length == 0 ? 'disabled' : ''} 
+                    onClick={generateDalleImage} 
+                >
                     Generate Dall-e Image
                 </Button>
             </Col>
         </Row>
         <Row>
-            <ProgressBar animated now={100} />
+            {loadingState && (
+                <ProgressBar animated now={100} />
+            )}
             <Col>
             {
                 resultState?.length > 0 ? (
-                    <Image src={resultState} thumbnail alt='pending to generate image' />
+                    <Image src={resultState} thumbnail alt='pending to generate image' width={1024} height={1024} />
                 ) 
             : 
             ( 
