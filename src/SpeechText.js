@@ -1,3 +1,4 @@
+// import React, { useRef, useEffect, useState } from 'react';
 import { useRef, useState } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import Row from 'react-bootstrap/Row';
@@ -6,43 +7,55 @@ import { Image } from "react-bootstrap";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import microPhoneIcon from "./icons/blue-microphone-icon.png";
-import dataStream from './dataStream';
-
-// import "./App.css";
+import promptStream from './streams/promptStream';
 
 export function SpeechText() {
   const [isListeningState, setIsListeningState] = useState(false);
   const { transcript, resetTranscript } = useSpeechRecognition();
-  const microphoneRef = useRef(null);
+
+  // useEffect(() => {
+  //   // Subscribe to the data stream
+  //   const subscription = promptStream.subscribe((value) => {
+  //     promptStream.next('');
+  //   });
+
+  //   // Clean up the subscription when the component unmounts
+  //   return () => {
+  //       subscription.unsubscribe();
+  //   };
+
+  // }, []);
+
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return (
-      <div className="mircophone-container">
+      <div>
         Browser is not Support Speech Recognition.
       </div>
     );
   }
+
   const handleListening = () => {
     setIsListeningState(true);
-    // microphoneRef.current.classList.add("listening");
     SpeechRecognition.startListening({
       continuous: true,
       language: 'es-CO'
     });
   };
+
   const stopRecording = () => {
     setIsListeningState(false);
-    // microphoneRef.current.classList.remove("listening");
     SpeechRecognition.stopListening();
   };
+
   const handleReset = () => {
     stopRecording();
     resetTranscript();
   };
+
   return (
     <div>
       <Row>
         <Col xs={6} md={4}>
-          {/* <Image src={microPhoneIcon} className="microphone-icon" /> */}
           <Button variant="primary" disabled={isListeningState ? 'disabled' : ''} onClick={handleListening} >
            {isListeningState ? 'Recording..' : 'Record'}
           </Button>
@@ -54,16 +67,12 @@ export function SpeechText() {
           )}
         </Col>
       </Row>
-      <Row>
-        <Col>
-        {transcript && (
-          <div className="microphone-result-text">
-          {dataStream.next(transcript)}
-          {transcript}
+      {transcript && (
+          <div>
+            {transcript}
+            {promptStream.next(transcript)}
           </div>
-        )}
-        </Col>
-      </Row>
+      )}
     </div>
     // <div className="microphone-wrapper">
     //   <div className="mircophone-container">

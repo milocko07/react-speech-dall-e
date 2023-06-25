@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
 
 // Create a BehaviorSubject to hold the data
-const dataStream = new BehaviorSubject('Initial Value');
+const promptStream = new BehaviorSubject('Descríbeme..');
 
 // Export the stream
-export default dataStream;
+export default promptStream;

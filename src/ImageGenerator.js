@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-
 import { Configuration, OpenAIApi } from "openai";
-// import "./App.css";
-import dataStream from './dataStream';
+import Form from 'react-bootstrap/Form';
+import promptStream from './streams/promptStream';
 
 export function ImageGenerator() {
 
     const [promptState, setPromptState] = useState('');
     const [loadingState, setLoadingState] = useState(false);
     const [resultState, setResultState] = useState("");
-
 
     const configuration = new Configuration({
         apiKey: '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',
@@ -19,8 +17,7 @@ export function ImageGenerator() {
 
     useEffect(() => {
         // Subscribe to the data stream
-        const subscription = dataStream
-        .subscribe((value) => {
+        const subscription = promptStream.subscribe((value) => {
             setPromptState(value);
         });
 
@@ -34,6 +31,7 @@ export function ImageGenerator() {
     const changePromptInput = async (e) => {
         setPromptState(e.target.value);
         // Propagate to the subject.
+        {promptStream.next(e.target.value)}
     };
 
     const generateDalleImage = async () => {
@@ -58,26 +56,36 @@ export function ImageGenerator() {
     };
 
     return (
-        <div>
-            <p>Describe la imágen:</p>
-            <textarea
-                className="app-input"
-                placeholder={promptState}
-                value={promptState}
-                onChange={(e) => changePromptInput(e)}
-                rows="10"
-                cols="40"
-            />
-            <button onClick={generateDalleImage}>Generate Dall-e Image</button>
+    <>
+      <Form.Label htmlFor="inputPassword5">Describe la imágen:</Form.Label>
+      <Form.Control 
+        as="textarea" 
+        rows={3} 
+        placeholder={promptState}
+        value={promptState}
+        onChange={(e) => changePromptInput(e)}
+      />
+    </>
+        // <div>
+        //     <p>Describe la imágen:</p>
+        //     <textarea
+        //         className="app-input"
+        //         placeholder={promptState}
+        //         value={promptState}
+        //         onChange={(e) => changePromptInput(e)}
+        //         rows="10"
+        //         cols="40"
+        //     />
+        //     <button onClick={generateDalleImage}>Generate Dall-e Image</button>
 
-            {
-                resultState?.length > 0 ? (
-                    <img className="result-image" src={resultState} alt="result" width={512} height={512} />
-                ) 
-            : ( 
-                <></> 
-            )}
+        //     {
+        //         resultState?.length > 0 ? (
+        //             <img className="result-image" src={resultState} alt="result" width={512} height={512} />
+        //         ) 
+        //     : ( 
+        //         <></> 
+        //     )}
 
-        </div>
+        // </div>
     );
 }

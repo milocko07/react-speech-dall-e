@@ -14,7 +14,7 @@ function App() {
             <h2>Generate an Image using Open AI API</h2>
         </div>
         <SpeechText className="p-2"/>
-        {/* <ImageGenerator className="p-3"/> */}
+        <ImageGenerator className="p-3"/>
       </Stack>
     </Container>
   );
