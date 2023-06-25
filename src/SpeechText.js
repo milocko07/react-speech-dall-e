@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import "./App.css";
-import microPhoneIcon from "./logo.svg";
+import microPhoneIcon from "./icons/blue-microphone-icon.png";
 import dataStream from './dataStream';
 
 export function SpeechText() {
