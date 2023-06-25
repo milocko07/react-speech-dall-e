@@ -16,7 +16,7 @@ export function ImageGenerator() {
     const [resultState, setResultState] = useState("");
 
     const configuration = new Configuration({
-        apiKey: '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',
+        apiKey: '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',
     });
     
     const openai = new OpenAIApi(configuration);
@@ -43,12 +43,13 @@ export function ImageGenerator() {
     const generateDalleImage = async () => {
         debugger;
         setLoadingState(true);
+        setResultState(null);
 
         try{
             const apiResponse = await openai.createImage({
                 prompt: promptState,
                 n: 1,
-                size: "1024x1024",
+                size: "512x512",
               });
 
             setResultState(apiResponse.data.data[0].url);
