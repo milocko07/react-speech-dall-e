@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Configuration, OpenAIApi } from "openai";
-import "./App.css";
+// import "./App.css";
 import dataStream from './dataStream';
 
 export function ImageGenerator() {
