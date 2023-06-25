@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 import promptStream from './streams/promptStream';
 
@@ -81,6 +82,7 @@ export function ImageGenerator() {
             </Col>
         </Row>
         <Row>
+            <ProgressBar animated now={100} />
             <Col>
             {
                 resultState?.length > 0 ? (
