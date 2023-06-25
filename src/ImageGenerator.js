@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Configuration, OpenAIApi } from "openai";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 
 import promptStream from './streams/promptStream';
 
@@ -38,7 +41,6 @@ export function ImageGenerator() {
 
     const generateDalleImage = async () => {
         debugger;
-        // setPlaceholder(`Search ${prompt}..`);
         setLoadingState(true);
 
         try{
@@ -58,37 +60,38 @@ export function ImageGenerator() {
     };
 
     return (
-    <>
-      <Form.Label htmlFor="inputPassword5">Describe la imágen:</Form.Label>
-      <Form.Control 
-        as="textarea" 
-        rows={3} 
-        placeholder={promptState}
-        value={promptState}
-        onChange={(e) => changePromptInput(e)}
-      />
-      
-    </>
-        // <div>
-        //     <p>Describe la imágen:</p>
-        //     <textarea
-        //         className="app-input"
-        //         placeholder={promptState}
-        //         value={promptState}
-        //         onChange={(e) => changePromptInput(e)}
-        //         rows="10"
-        //         cols="40"
-        //     />
-        //     <button onClick={generateDalleImage}>Generate Dall-e Image</button>
-
-        //     {
-        //         resultState?.length > 0 ? (
-        //             <img className="result-image" src={resultState} alt="result" width={512} height={512} />
-        //         ) 
-        //     : ( 
-        //         <></> 
-        //     )}
-
-        // </div>
+    <div>
+        <Row>
+            <Col >
+                <Form.Label htmlFor="inputPassword5">Describe la imágen:</Form.Label>
+                <Form.Control 
+                    as="textarea" 
+                    rows={3} 
+                    placeholder={promptState}
+                    value={promptState}
+                    onChange={(e) => changePromptInput(e)}
+                />
+            </Col>
+        </Row>
+        <Row>
+            <Col xs={6} md={4}>
+                <Button variant="primary" onClick={generateDalleImage} >
+                    Generate Dall-e Image
+                </Button>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+            {
+                resultState?.length > 0 ? (
+                    <Image src={resultState} thumbnail alt='pending to generate image' />
+                ) 
+            : 
+            ( 
+                <></> 
+            )}
+            </Col>
+        </Row>
+    </div>
     );
 }

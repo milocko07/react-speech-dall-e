@@ -1,9 +1,8 @@
 import React from 'react';
-import {SpeechText} from "./SpeechText"
-import {ImageGenerator} from "./ImageGenerator"
-
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
+import {SpeechText} from "./SpeechText"
+import {ImageGenerator} from "./ImageGenerator"
 import "./App.css";
 
 function App() {

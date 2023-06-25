@@ -13,14 +13,14 @@ export function SpeechText() {
 
   useEffect(() => {
     // Subscribe to the data stream
-    // const subscription = promptStream.subscribe((value) => {
-    //   promptStream.next(value);
-    // });
+    const subscription = promptStream.subscribe((value) => {
+      // promptStream.next(value);
+    });
 
-    // // Clean up the subscription when the component unmounts
-    // return () => {
-    //     subscription.unsubscribe();
-    // };
+    // Clean up the subscription when the component unmounts
+    return () => {
+        subscription.unsubscribe();
+    };
 
   }, []);
 
@@ -68,7 +68,6 @@ export function SpeechText() {
       </Row>
       {transcript && (
           <div>
-            {transcript}
             {promptStream.next(transcript)}
           </div>
       )}
