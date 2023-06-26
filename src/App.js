@@ -10,7 +10,7 @@ function App() {
     <Container className="p-3">
       <Stack gap={3}>
         <div className="p-2">
-            <h2>Generate an Image using Open AI API</h2>
+            <h2>Generar una imágen usando Open AI API</h2>
         </div>
         <SpeechText className="p-2"/>
         <ImageGenerator className="p-3"/>

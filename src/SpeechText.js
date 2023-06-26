@@ -60,13 +60,13 @@ export function SpeechText() {
             disabled={isListeningState ? 'disabled' : ''} 
             onClick={handleListening} 
           >
-           {isListeningState ? 'Recording..' : 'Record'}
+           {isListeningState ? 'Gragando..' : 'Escuchar petición'}
           </Button>
           {isListeningState && (
-          <Button variant="danger" onClick={stopRecording}>Stop</Button>
+          <Button variant="danger" onClick={stopRecording}>Parar</Button>
           )}
           {transcript && (
-          <Button variant="warning" onClick={handleReset}>Reset</Button>
+          <Button variant="warning" onClick={handleReset}>Volver a empezar</Button>
           )}
         </Col>
       </Row>

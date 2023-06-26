@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Configuration, OpenAIApi } from "openai";
+import { Configuration, CreateImageRequestSizeEnum, OpenAIApi } from "openai";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import Alert from 'react-bootstrap/Alert';
 
 import promptStream from './streams/promptStream';
 
@@ -13,10 +14,11 @@ export function ImageGenerator() {
 
     const [promptState, setPromptState] = useState('');
     const [loadingState, setLoadingState] = useState(false);
-    const [resultState, setResultState] = useState("");
+    const [resultState, setResultState] = useState(null);
+    const [errorState, setErrorState] = useState('');
 
     const configuration = new Configuration({
-        apiKey: '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',
+        apiKey: '',
     });
     
     const openai = new OpenAIApi(configuration);
@@ -44,18 +46,26 @@ export function ImageGenerator() {
         debugger;
         setLoadingState(true);
         setResultState(null);
+        setErrorState(null);
 
         try{
             const apiResponse = await openai.createImage({
                 prompt: promptState,
-                n: 1,
-                size: "512x512",
+                n: 1, // The number of images to generate. Must be between 1 and 10.
+                size:  CreateImageRequestSizeEnum._512x512,
               });
 
             setResultState(apiResponse.data.data[0].url);
         }
-        catch {
-            setResultState("https://yourwebsitefirst.com/wp-content/uploads/2017/06/Best-Practices-for-API-Error-Handling.jpg")
+        catch (error) {
+            if (error.response?.data?.error?.message) {
+                console.log(error.response.status);
+                console.log(error.response.data);
+                setErrorState(error.response.data.error.message);
+            } else {
+                console.log(error.message);
+                setErrorState(error.message);
+            }
         }
         
         setLoadingState(false);
@@ -83,23 +93,34 @@ export function ImageGenerator() {
                     disabled={loadingState || promptState.length == 0 ? 'disabled' : ''} 
                     onClick={generateDalleImage} 
                 >
-                    Generate Dall-e Image
+                    Generar Dall-e Imagen
                 </Button>
             </Col>
         </Row>
         <Row>
-            {loadingState && (
-                <ProgressBar animated now={100} />
-            )}
             <Col>
-            {
-                resultState?.length > 0 ? (
+                {loadingState && (
+                    <ProgressBar animated now={100} />
+                )}
+                
+                {resultState?.length > 0 ? (
                     <Image src={resultState} thumbnail alt='pending to generate image' width={1024} height={1024} />
-                ) 
-            : 
-            ( 
-                <></> 
-            )}
+                )
+                : 
+                ( 
+                    <></> 
+                )}
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                {errorState?.length > 0 ? (
+                    <Alert key='danger' variant='danger'>{errorState}</Alert>
+                )
+                : 
+                ( 
+                    <></> 
+                )}
             </Col>
         </Row>
     </div>
