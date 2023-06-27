@@ -55,6 +55,8 @@ export function ImageGenerator() {
                 size:  CreateImageRequestSizeEnum._512x512,
               });
 
+            
+            // Render first image
             setResultState(apiResponse.data.data[0].url);
         }
         catch (error) {

@@ -7,9 +7,9 @@ body {
   margin-bottom: 10px;
 }
 
-.resetButton
+.btn 
 {
-  margin-left: -40px;
+  margin-right: 5px;
 }
 
 textarea.form-control{

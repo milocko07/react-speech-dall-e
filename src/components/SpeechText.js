@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import Stack from 'react-bootstrap/Stack';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 import promptStream from '../streams/promptStream';
@@ -39,27 +39,23 @@ export function SpeechText() {
 
   return (
     <div>
-      <Row>
-        <Col md={1}>
+      <Stack gap={1}>
+        <div className="p-1">
           <Button 
             variant="primary" 
             disabled={isListeningState ? 'disabled' : ''} 
             onClick={handleListening} 
           >
-           {isListeningState ? 'Gragando..' : 'Habla'}
+            {isListeningState ? 'Gragando..' : 'Habla'}
           </Button>
-        </Col>
-        {isListeningState && (
-          <Col md={1}>
+          {isListeningState && (
             <Button variant="danger" onClick={stopRecording}>Parar</Button>
-          </Col>
           )}
           {transcript && (
-            <Col xl={2} md={4} className='resetButton'>
               <Button variant="warning" onClick={handleReset}>Volver a empezar</Button>
-            </Col>
           )}
-      </Row>
+        </div>
+      </Stack>
       {transcript && (
           <div>
             {promptStream.next(transcript)}
