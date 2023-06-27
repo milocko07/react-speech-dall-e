@@ -1,0 +1,17 @@
+body {
+  background-color: rgba(10, 7, 7, 0.8);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.row{
+  margin-bottom: 10px;
+}
+
+.btn 
+{
+  margin-right: 5px;
+}
+
+textarea.form-control{
+  border-color: #0d6efd;
+}
