@@ -8,7 +8,7 @@ import Image from 'react-bootstrap/Image';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Alert from 'react-bootstrap/Alert';
 
-import promptStream from './streams/promptStream';
+import promptStream from '../streams/promptStream';
 
 export function ImageGenerator() {
 
@@ -114,7 +114,7 @@ export function ImageGenerator() {
         </Row>
         <Row>
             <Col>
-                {errorState?.length > 0 ? (
+                {errorState?.length > 0 && promptState?.length > 0 ? (
                     <Alert key='danger' variant='danger'>{errorState}</Alert>
                 )
                 : 
