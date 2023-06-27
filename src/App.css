@@ -11,3 +11,7 @@ body {
 {
   margin-left: -40px;
 }
+
+textarea.form-control{
+  border-color: #0d6efd;
+}

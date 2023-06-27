@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 
 import promptStream from '../streams/promptStream';
@@ -75,7 +75,7 @@ export function ImageGenerator() {
     <div>
         <Row>
             <Col >
-                <Form.Label htmlFor="inputPassword5">Describe la imágen:</Form.Label>
+                <Form.Label >Describe la imágen:</Form.Label>
                 <Form.Control 
                     as="textarea"
                     disabled={loadingState ? 'disabled' : ''} 
@@ -94,17 +94,29 @@ export function ImageGenerator() {
                     onClick={generateDalleImage} 
                 >
                     Generar Dall-e Imagen
+                    {loadingState && (
+                    <span>...
+                    <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                    </span>
+                    )}
                 </Button>
             </Col>
         </Row>
         <Row>
             <Col>
-                {loadingState && (
-                    <ProgressBar animated now={100} />
-                )}
-                
                 {resultState?.length > 0 ? (
-                    <Image src={resultState} thumbnail alt='pending to generate image' width={1024} height={1024} />
+                    <Image 
+                        src={resultState} 
+                        thumbnail 
+                        alt='pending to generate image' 
+                        width={1024} height={1024} 
+                    />
                 )
                 : 
                 ( 

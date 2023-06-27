@@ -8,9 +8,9 @@ import "./App.css";
 
 function App() {
   return (
-    <Container className="p-3">
+    <Container className="border rounded">
       <Stack gap={3}>
-        <Heading />
+        <Heading className="p-1"/>
         <SpeechText className="p-2"/>
         <ImageGenerator className="p-3"/>
       </Stack>
