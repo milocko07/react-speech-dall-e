@@ -8,7 +8,8 @@ import Image from 'react-bootstrap/Image';
 import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 
-import promptStream from '../streams/promptStream';
+import PromptStream from '../streams/PromptStream';
+import {OpenAIService} from '../services/OpenAIService';
 
 export function ImageGenerator() {
 
@@ -25,7 +26,7 @@ export function ImageGenerator() {
 
     useEffect(() => {
         // Subscribe to the data stream
-        const subscription = promptStream.subscribe((value) => {
+        const subscription = PromptStream.subscribe((value) => {
             setPromptState(value);
         });
 
@@ -39,7 +40,7 @@ export function ImageGenerator() {
     const changePromptInput = async (e) => {
         setPromptState(e.target.value);
         // Propagate to the subject.
-        {promptStream.next(e.target.value)}
+        {PromptStream.next(e.target.value)}
     };
 
     const generateDalleImage = async () => {
@@ -49,13 +50,7 @@ export function ImageGenerator() {
         setErrorState(null);
 
         try{
-            const apiResponse = await openai.createImage({
-                prompt: promptState,
-                n: 1, // The number of images to generate. Must be between 1 and 10.
-                size:  CreateImageRequestSizeEnum._512x512,
-              });
-
-            
+            const apiResponse = await OpenAIService(promptState);
             // Render first image
             setResultState(apiResponse.data.data[0].url);
         }
@@ -97,14 +92,14 @@ export function ImageGenerator() {
                 >
                     Generar Dall-e Imagen
                     {loadingState && (
-                    <span>...
-                    <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                    />
+                        <span>...
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
                     </span>
                     )}
                 </Button>

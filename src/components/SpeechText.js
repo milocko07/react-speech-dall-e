@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import Stack from 'react-bootstrap/Stack';
-import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 
-import promptStream from '../streams/promptStream';
+import PromptStream from '../streams/PromptStream';
 
 export function SpeechText() {
   const [isListeningState, setIsListeningState] = useState(false);
@@ -34,7 +33,7 @@ export function SpeechText() {
   const handleReset = () => {
     stopRecording();
     resetTranscript();
-    {promptStream.next('')}
+    {PromptStream.next('')}
   };
 
   return (
@@ -58,7 +57,7 @@ export function SpeechText() {
       </Stack>
       {transcript && (
           <div>
-            {promptStream.next(transcript)}
+            {PromptStream.next(transcript)}
           </div>
       )}
     </div>
