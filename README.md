@@ -1,6 +1,6 @@
 # React-Dall-E
 
-This app demonstrates how to connect a React app (using hooks) to the [DALL-E OpenAI API](https://platform.openai.com/docs/guides/images/introduction) to generate images based on audio and textual prompts. The app allows users to record the voice, transform it as input in a text prompt, send it to the DALL-E API, and display the generated image in the UI.
+This app demonstrates how to connect a React app (using hooks) to the [DALL-E OpenAI API](https://platform.openai.com/docs/guides/images/introduction) to generate images based on audio and textual prompts,  allowing users to record the voice, transform it as input in a text prompt, send it to the DALL-E API, and display the generated image in the UI.
 
 # Installation
 
@@ -14,6 +14,24 @@ Install the dependencies by running the following command:
 npm install
 ```
 Wait for it.
+
+# Packages used
+
+```console
+npx create-react-app react-dall-e
+```
+```console
+npm i react-speech-recognition
+```
+```console
+npm i rxjs
+```
+```console
+npm i openai
+```
+```console
+npm i react-bootstrap
+```
 
 # Configuration
 
@@ -40,3 +58,26 @@ Once the app is running, follow these steps to generate an image:
 Enter a text prompt in the input field.
 Click the "Generate Image" button.
 The app will send the text prompt to the DALL-E API and display the generated image in the app's interface.
+
+# Limitations
+
+Please note the following limitations and considerations when using the React-DALL-E app:
+
+1. The DALL-E API has usage limits, including the number of requests per minute and the total number of tokens used. Ensure you review and understand the usage limits set by OpenAI to avoid exceeding them.
+2. The app relies on an internet connection to communicate with the DALL-E API. Make sure you have a stable internet connection while using the app.
+3. The quality and style of the generated images are influenced by the pre-trained model and the prompts provided. Experiment with different prompts to achieve desired results.
+
+# Contributing
+
+Contributions are welcome! If you encounter any issues, have suggestions, or would like to add new features, feel free to open an issue or submit a pull request to the GitHub repository.
+
+# License
+
+The React-DALL-E app is licensed under the **MIT License**.
+
+# Acknowledgments
+
+1. This app is based on the DALL-E OpenAI API and utilizes the power of React for the user interface.
+2. Special thanks to the OpenAI team for their efforts in developing the DALL-E model and making it available for experimentation.
+3. [How to Generate Images using React and the Dall-E 2 API – React and OpenAI API Tutorial.](https://www.freecodecamp.org/news/generate-images-using-react-and-dall-e-api-react-and-openai-api-tutorial/)
+4. [Build a React App Using DALL-E API.](https://betterprogramming.pub/build-a-react-app-using-dall-e-api-bd15d5d67b31)
