@@ -1,7 +1,7 @@
 import { Configuration, CreateImageRequestSizeEnum, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-    apiKey: '',
+    apiKey: 'paste here open AI key',
 });
 
 const openai = new OpenAIApi(configuration);
