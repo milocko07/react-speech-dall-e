@@ -2,6 +2,8 @@
 
 This app demonstrates how to connect a React app (using hooks) to the [DALL-E OpenAI API](https://platform.openai.com/docs/guides/images/introduction) to generate images based on audio and textual prompts,  allowing users to record the voice, transform it as input in a text prompt, send it to the DALL-E API, and display the generated image in the UI.
 
+![Demo-1-Result](https://github.com/milocko07/react-dall-e/assets/37205551/c99a5349-a78e-4acd-b515-29f1bca7db4e)
+
 # Installation
 
 Clone the repository to your local machine.
@@ -55,9 +57,9 @@ This command starts the development server, and the app will be accessible at ht
 
 Once the app is running, follow these steps to generate an image:
 
-Enter a text prompt in the input field.
-Click the "Generate Image" button.
-The app will send the text prompt to the DALL-E API and display the generated image in the app's interface.
+1. Enable your mic to speech and click the button "Habla" (talk in english) or enter a manual text prompt in the text area field
+2. Click on the "Generar Dall-e Imagen" (Generate Dall-e image in english) button.
+3. The app will send the text prompt to the DALL-E image API and display the generated image just bellow.
 
 # Limitations
 
