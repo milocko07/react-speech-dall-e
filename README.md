@@ -4,11 +4,17 @@ This app demonstrates how to connect a React app (using hooks) to the [DALL-E Op
 
 ![Demo-1-Result](https://github.com/milocko07/react-dall-e/assets/37205551/c99a5349-a78e-4acd-b515-29f1bca7db4e)
 
+# Docs
+
+My own article about this topic: [Unleashing the Power of Voice and Creativity: Generating Inclusiveness DALL-E Images in a React App with Speech Recognation](https://medium.com/@camiloinfo07/unleashing-the-power-of-voice-and-creativity-generating-inclusiveness-dall-e-images-in-a-react-app-c0ad61c3c4d9)
+
+[Slides](https://docs.google.com/presentation/d/1Y00jKsTOaAHDsb9Vmqulydinssd09pVO/edit?usp=sharing&ouid=106597575787893416404&rtpof=true&sd=true) corresponding to a tech talk that I gave about this topic to some  local dev communities.
+
 # Installation
 
 Clone the repository to your local machine.
 
-Navigate to the project directory (main root).
+Navigate to the projectgoo directory (main root).
 
 Install the dependencies by running the following command:
 
