@@ -41,9 +41,14 @@ Before running the app, you need to set up the configuration for the DALL-E Open
 
 1. Create an account on the OpenAI [web page](https://platform.openai.com/) and create an API key
    Note: You will need to pay it for some credits to use API keys.
-3. Copy that new key in a secure location and paste it into the apiKey property value that is located in the **src/Services/OpenAIService.js** file.
+2. Copy that new key in a secure location and paste it into the apiKey property value that is located in the **src/Services/OpenAIService.js** file.
 
 ![image](https://github.com/milocko07/react-dall-e/assets/37205551/d93b9287-64dd-45cc-ac7e-2cc287d0a8a6)
+
+3. Modify the speech recognition language of your preference in the **handleListening()** method that corresponds to the **SpeechText.js** component (by default is spanish-colombia):
+
+![image](https://github.com/milocko07/react-speech-dall-e/assets/37205551/85b9a1cf-3426-4c4a-9b0b-1f3ee4752795)
+   
 
 # Usage
 
