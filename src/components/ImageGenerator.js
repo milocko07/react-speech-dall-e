@@ -64,7 +64,7 @@ export function ImageGenerator() {
     <div>
         <Row>
             <Col >
-                <Form.Label >Describe la imágen:</Form.Label>
+                <Form.Label >Describe the image that you want:</Form.Label>
                 <Form.Control 
                     as="textarea"
                     disabled={loadingState ? 'disabled' : ''} 
@@ -82,7 +82,7 @@ export function ImageGenerator() {
                     disabled={loadingState || promptState.length == 0 ? 'disabled' : ''} 
                     onClick={generateDalleImage} 
                 >
-                    Generar Dall-e Imagen
+                    Generate Dall-E Image
                     {loadingState && (
                         <span>...
                         <Spinner
