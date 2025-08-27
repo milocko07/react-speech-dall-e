@@ -2,6 +2,8 @@
 
 A React application that generates images using OpenAI's latest DALL-E 3 API, with speech-to-text capabilities.
 
+<img width="1134" height="913" alt="image" src="https://github.com/user-attachments/assets/6eb52a80-945b-49da-a12e-094b6e5ab4f1" />
+
 ## Features
 
 - **🎨 DALL-E 3 Image Generation**: Latest image generation model with quality and style options
