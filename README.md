@@ -8,16 +8,13 @@ A React application that generates images using OpenAI's latest DALL-E 3 API, wi
   - Standard and HD quality options
   - Natural and vivid style preferences
   - 1024x1024 high-resolution images
-- **🤖 GPT-4 Turbo Text Generation**: Latest text generation model for conversations and content creation
-- **🎤 Speech-to-Text Input**: Voice input for both image and text generation
+- **🎤 Speech-to-Text Input**: Voice input for both image generation
 - **🔄 Real-time Prompt Streaming**: Seamless communication between components
 - **📱 Responsive UI**: Bootstrap-based modern interface with tabbed navigation
 
 ## Latest OpenAI Models Used
 
 - **DALL-E 3** (`dall-e-3`) - Latest image generation model
-- **GPT-4 Turbo** (`gpt-4-1106-preview`) - Latest text generation model  
-- **GPT-4 Vision** (`gpt-4-vision-preview`) - Latest vision analysis model
 
 ## Setup
 
@@ -46,20 +43,13 @@ A React application that generates images using OpenAI's latest DALL-E 3 API, wi
 
 ### Image Generation (DALL-E 3)
 1. Type or speak your image description in the text area
-2. Choose quality (Standard/HD) and style (Natural/Vivid) preferences
-3. Click "Generar Dall-e Imagen" to generate the image
-4. The generated image will appear below the form
-
-### Text Generation (GPT-4 Turbo)
-1. Switch to the "GPT-4 Turbo Text Generation" tab
-2. Enter your question or prompt
-3. Click "Generate with GPT-4 Turbo"
-4. View the AI-generated response
+2. Click "Generate Dall-e Image" to create the 
+image
+3. The generated image will appear below
 
 ### Speech Input
 - Use the speech recognition component to input prompts by voice
 - Supports multiple languages (default: Spanish-Colombia)
-- Works with both image and text generation
 
 ## Security Notes
 
@@ -80,11 +70,9 @@ A React application that generates images using OpenAI's latest DALL-E 3 API, wi
 If you encounter issues:
 1. Ensure your OpenAI API key is valid and has sufficient credits
 2. Check that all environment variables are properly set
-3. Verify your OpenAI account has access to DALL-E 3 and GPT-4 models
+3. Verify your OpenAI account has access to DALL-E 3
 4. Make sure you have enough API credits for the models you want to use
 
 ## API Model Costs
 
 - **DALL-E 3**: $0.040 per image (Standard), $0.080 per image (HD)
-- **GPT-4 Turbo**: $0.01 per 1K input tokens, $0.03 per 1K output tokens
-- **GPT-4 Vision**: $0.01 per 1K input tokens, $0.03 per 1K output tokens
