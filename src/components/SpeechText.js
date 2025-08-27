@@ -33,7 +33,7 @@ export function SpeechText() {
   const handleReset = () => {
     stopRecording();
     resetTranscript();
-    {PromptStream.next('')}
+    PromptStream.next('');
   };
 
   return (
