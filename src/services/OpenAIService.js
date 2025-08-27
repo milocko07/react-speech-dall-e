@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 // Initialize OpenAI client with v5 API
 const openai = new OpenAI({
-    apiKey: 'paste here open AI key',
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true // Required for client-side usage
 });
 
