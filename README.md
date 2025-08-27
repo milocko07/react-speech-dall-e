@@ -1,96 +1,90 @@
-# React-Speech-Dall-E
+# React Speech Dall-E Image Generator
 
-This app demonstrates how to connect a React app (using hooks) to the [DALL-E OpenAI API](https://platform.openai.com/docs/guides/images/introduction) to generate images based on audio and textual prompts,  allowing users to record the voice, transform it as input in a text prompt, send it to the DALL-E API, and display the generated image in the UI.
+A React application that generates images using OpenAI's latest DALL-E 3 API, with speech-to-text capabilities.
 
-![Demo-1-Result](https://github.com/milocko07/react-dall-e/assets/37205551/c99a5349-a78e-4acd-b515-29f1bca7db4e)
+## Features
 
-# Docs
+- **🎨 DALL-E 3 Image Generation**: Latest image generation model with quality and style options
+  - Standard and HD quality options
+  - Natural and vivid style preferences
+  - 1024x1024 high-resolution images
+- **🤖 GPT-4 Turbo Text Generation**: Latest text generation model for conversations and content creation
+- **🎤 Speech-to-Text Input**: Voice input for both image and text generation
+- **🔄 Real-time Prompt Streaming**: Seamless communication between components
+- **📱 Responsive UI**: Bootstrap-based modern interface with tabbed navigation
 
-My own article about this topic: [Unleashing the Power of Voice and Creativity: Generating Inclusiveness DALL-E Images in a React App with Speech Recognation](https://medium.com/@camiloinfo07/unleashing-the-power-of-voice-and-creativity-generating-inclusiveness-dall-e-images-in-a-react-app-c0ad61c3c4d9)
+## Latest OpenAI Models Used
 
-[Slides](https://docs.google.com/presentation/d/1Y00jKsTOaAHDsb9Vmqulydinssd09pVO/edit?usp=sharing&ouid=106597575787893416404&rtpof=true&sd=true) corresponding to a tech talk that I gave about this topic to some  local dev communities.
+- **DALL-E 3** (`dall-e-3`) - Latest image generation model
+- **GPT-4 Turbo** (`gpt-4-1106-preview`) - Latest text generation model  
+- **GPT-4 Vision** (`gpt-4-vision-preview`) - Latest vision analysis model
 
-# Installation
+## Setup
 
-Clone the repository to your local machine.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Navigate to the projectgoo directory (main root).
-
-Install the dependencies by running the following command:
-
-```console
-npm install
-```
-Wait for it.
-
-# Packages used
-
-```console
-npx create-react-app react-dall-e
-```
-```console
-npm i react-speech-recognition
-```
-```console
-npm i rxjs
-```
-```console
-npm i openai
-```
-```console
-npm i react-bootstrap
-```
-
-# Configuration
-
-Before running the app, you need to set up the configuration for the DALL-E OpenAI API.
-
-1. Create an account on the OpenAI [web page](https://platform.openai.com/) and create an API key
-   Note: You will need to pay it for some credits to use API keys.
-2. Copy that new key in a secure location and paste it into the apiKey property value that is located in the **src/services/OpenAIService.js** file.
-
-![image](https://github.com/milocko07/react-dall-e/assets/37205551/d93b9287-64dd-45cc-ac7e-2cc287d0a8a6)
-
-3. Modify the speech recognition language of your preference in the **handleListening()** method that corresponds to the **src/components/SpeechText.js** component (by default is spanish-colombia):
-
-![image](https://github.com/milocko07/react-speech-dall-e/assets/37205551/85b9a1cf-3426-4c4a-9b0b-1f3ee4752795)
+2. **Environment Configuration:**
+   Create a `.env` file in the root directory with your OpenAI API key:
+   ```
+   REACT_APP_OPENAI_API_KEY=your_actual_openai_api_key_here
+   ```
    
+   **Important:** Never commit your actual API key to version control!
 
-# Usage
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
 
-To start the React-DALL-E app, run the following command:
+4. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-```console
-npm start
-```
+## Usage
 
-This command starts the development server, and the app will be accessible at http://localhost:3000 in your browser.
+### Image Generation (DALL-E 3)
+1. Type or speak your image description in the text area
+2. Choose quality (Standard/HD) and style (Natural/Vivid) preferences
+3. Click "Generar Dall-e Imagen" to generate the image
+4. The generated image will appear below the form
 
-Once the app is running, follow these steps to generate an image:
+### Text Generation (GPT-4 Turbo)
+1. Switch to the "GPT-4 Turbo Text Generation" tab
+2. Enter your question or prompt
+3. Click "Generate with GPT-4 Turbo"
+4. View the AI-generated response
 
-1. Enable your mic to speech and click the button "Habla" (talk in english) or enter a manual text prompt in the text area field
-2. Click on the "Generar Dall-e Imagen" (Generate Dall-e image in english) button.
-3. The app will send the text prompt to the DALL-E image API and display the generated image just bellow.
+### Speech Input
+- Use the speech recognition component to input prompts by voice
+- Supports multiple languages (default: Spanish-Colombia)
+- Works with both image and text generation
 
-# Limitations
+## Security Notes
 
-Please note the following limitations and considerations when using the React-DALL-E app:
+- API keys are stored in environment variables
+- The app uses `dangerouslyAllowBrowser: true` for client-side OpenAI API calls
+- Consider implementing a backend proxy for production use
 
-1. The DALL-E API has usage limits, including the number of requests per minute and the total number of tokens used. Ensure you review and understand the usage limits set by OpenAI to avoid exceeding them.
-2. The app relies on an internet connection to communicate with the DALL-E API. Make sure you have a stable internet connection while using the app.
-3. The quality and style of the generated images are influenced by the pre-trained model and the prompts provided. Experiment with different prompts to achieve desired results.
+## Dependencies
 
-# Contributing
+- React 18.2.0
+- OpenAI API v5 (latest)
+- React Bootstrap
+- RxJS for state management
+- React Speech Recognition
 
-Contributions are welcome! If you encounter any issues, have suggestions, or would like to add new features, feel free to open an issue or submit a pull request to the GitHub repository.
+## Troubleshooting
 
-# License
+If you encounter issues:
+1. Ensure your OpenAI API key is valid and has sufficient credits
+2. Check that all environment variables are properly set
+3. Verify your OpenAI account has access to DALL-E 3 and GPT-4 models
+4. Make sure you have enough API credits for the models you want to use
 
-The React-DALL-E app is licensed under the **MIT License**.
+## API Model Costs
 
-# Acknowledgments
-
-1. This app is based on the DALL-E OpenAI API and utilizes the power of React for the user interface.
-2. Special thanks to the OpenAI team for their efforts in developing the DALL-E model and making it available for experimentation.
-3. [How to Generate Images using React and the Dall-E 2 API – React and OpenAI API Tutorial.](https://www.freecodecamp.org/news/generate-images-using-react-and-dall-e-api-react-and-openai-api-tutorial/)
-4. [Build a React App Using DALL-E API.](https://betterprogramming.pub/build-a-react-app-using-dall-e-api-bd15d5d67b31)
+- **DALL-E 3**: $0.040 per image (Standard), $0.080 per image (HD)
+- **GPT-4 Turbo**: $0.01 per 1K input tokens, $0.03 per 1K output tokens
+- **GPT-4 Vision**: $0.01 per 1K input tokens, $0.03 per 1K output tokens
