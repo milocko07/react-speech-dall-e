@@ -1,16 +1,22 @@
-import { Configuration, CreateImageRequestSizeEnum, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
-const configuration = new Configuration({
-    apiKey: 'paste here open AI key',
+// Initialize OpenAI client with v5 API
+const openai = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true // Required for client-side usage
 });
 
-const openai = new OpenAIApi(configuration);
-
 export const OpenAIService = async (prompt) => {
-    return await openai.createImage({
+    try {
+        const response = await openai.images.generate({
             prompt: prompt,
-            n: 1, // The number of images to generate. Must be between 1 and 10.
-            size:  CreateImageRequestSizeEnum._512x512,
-    });
+            model: "dall-e-3",
+            n: 1,
+            size: "1024x1024",
+        });
+        return response;
+    } catch (error) {
+        console.error('OpenAI API Error:', error);
+        throw error;
+    }
 };
-  

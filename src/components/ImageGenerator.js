@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Configuration, CreateImageRequestSizeEnum, OpenAIApi } from "openai";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -18,12 +17,6 @@ export function ImageGenerator() {
     const [resultState, setResultState] = useState(null);
     const [errorState, setErrorState] = useState('');
 
-    const configuration = new Configuration({
-        apiKey: '',
-    });
-    
-    const openai = new OpenAIApi(configuration);
-
     useEffect(() => {
         // Subscribe to the data stream
         const subscription = PromptStream.subscribe((value) => {
@@ -40,19 +33,18 @@ export function ImageGenerator() {
     const changePromptInput = async (e) => {
         setPromptState(e.target.value);
         // Propagate to the subject.
-        {PromptStream.next(e.target.value)}
+        PromptStream.next(e.target.value);
     };
 
     const generateDalleImage = async () => {
-        debugger;
         setLoadingState(true);
         setResultState(null);
-        setErrorState(null);
+        setErrorState('');
 
         try{
             const apiResponse = await OpenAIService(promptState);
-            // Render first image
-            setResultState(apiResponse.data.data[0].url);
+            // Render first image - updated for OpenAI v5 API
+            setResultState(apiResponse.data[0].url);
         }
         catch (error) {
             if (error.response?.data?.error?.message) {
@@ -72,7 +64,7 @@ export function ImageGenerator() {
     <div>
         <Row>
             <Col >
-                <Form.Label >Describe la imágen:</Form.Label>
+                <Form.Label >Describe the image that you want:</Form.Label>
                 <Form.Control 
                     as="textarea"
                     disabled={loadingState ? 'disabled' : ''} 
@@ -90,7 +82,7 @@ export function ImageGenerator() {
                     disabled={loadingState || promptState.length == 0 ? 'disabled' : ''} 
                     onClick={generateDalleImage} 
                 >
-                    Generar Dall-e Imagen
+                    Generate Dall-E Image
                     {loadingState && (
                         <span>...
                         <Spinner

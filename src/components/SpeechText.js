@@ -33,7 +33,7 @@ export function SpeechText() {
   const handleReset = () => {
     stopRecording();
     resetTranscript();
-    {PromptStream.next('')}
+    PromptStream.next('');
   };
 
   return (
@@ -45,13 +45,13 @@ export function SpeechText() {
             disabled={isListeningState ? 'disabled' : ''} 
             onClick={handleListening} 
           >
-            {isListeningState ? 'Gragando..' : 'Habla'}
+            {isListeningState ? 'Recording..' : 'Speak'}
           </Button>
           {isListeningState && (
-            <Button variant="danger" onClick={stopRecording}>Parar</Button>
+            <Button variant="danger" onClick={stopRecording}>Stop</Button>
           )}
           {transcript && (
-              <Button variant="warning" onClick={handleReset}>Volver a empezar</Button>
+              <Button variant="warning" onClick={handleReset}>Start again</Button>
           )}
         </div>
       </Stack>
